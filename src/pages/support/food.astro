@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import FoodPage from '../../islands/FoodPage';
+---
+
+<AppLayout title="Food Support">
+  <FoodPage client:only="react" />
+</AppLayout>

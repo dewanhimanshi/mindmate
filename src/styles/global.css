@@ -1,0 +1,272 @@
+@import '@fontsource-variable/lexend';
+@import '@fontsource/atkinson-hyperlegible/latin-400.css';
+@import '@fontsource/atkinson-hyperlegible/latin-700.css';
+@import 'tailwindcss';
+
+/*
+ * MindMate design tokens.
+ * Each tone has: soft (card background), strong (accent / buttons), ink (text on soft).
+ * Themes: light (default), dark, and high contrast (data-contrast="high").
+ * Text size: data-text="s|m|l|xl" on <html>. Calm mode: data-calm="on".
+ */
+
+:root {
+  --bg: oklch(98.6% 0.012 300);
+  --bg-2: oklch(96% 0.02 300);
+  --surface: oklch(100% 0 0);
+  --ink: oklch(25% 0.04 285);
+  --ink-soft: oklch(45% 0.035 285);
+  --line: oklch(90% 0.02 290);
+  --focus: oklch(55% 0.24 290);
+  --shadow: 0 1px 2px oklch(30% 0.05 290 / 0.06), 0 8px 24px -8px oklch(30% 0.08 290 / 0.18);
+  --shadow-lg: 0 2px 4px oklch(30% 0.05 290 / 0.06), 0 20px 48px -16px oklch(30% 0.1 290 / 0.28);
+
+  --violet-soft: oklch(94% 0.045 295);
+  --violet: oklch(58% 0.22 295);
+  --violet-ink: oklch(32% 0.13 295);
+  --coral-soft: oklch(94% 0.045 30);
+  --coral: oklch(66% 0.19 30);
+  --coral-ink: oklch(38% 0.12 30);
+  --teal-soft: oklch(94% 0.045 185);
+  --teal: oklch(62% 0.13 185);
+  --teal-ink: oklch(34% 0.07 185);
+  --sun-soft: oklch(96% 0.07 95);
+  --sun: oklch(82% 0.17 85);
+  --sun-ink: oklch(40% 0.09 70);
+  --rose-soft: oklch(94% 0.04 0);
+  --rose: oklch(65% 0.2 0);
+  --rose-ink: oklch(38% 0.13 0);
+  --sky-soft: oklch(94% 0.04 235);
+  --sky: oklch(64% 0.15 240);
+  --sky-ink: oklch(35% 0.1 245);
+  --mint-soft: oklch(95% 0.05 160);
+  --mint: oklch(70% 0.15 160);
+  --mint-ink: oklch(36% 0.08 160);
+  --peach-soft: oklch(95% 0.045 60);
+  --peach: oklch(75% 0.15 55);
+  --peach-ink: oklch(40% 0.1 50);
+  --lilac-soft: oklch(95% 0.03 310);
+  --lilac: oklch(66% 0.13 310);
+  --lilac-ink: oklch(36% 0.1 310);
+  --lime-soft: oklch(95% 0.06 130);
+  --lime: oklch(74% 0.18 130);
+  --lime-ink: oklch(38% 0.1 135);
+
+  /* Section gradients */
+  --grad-wellbeing: linear-gradient(135deg, oklch(66% 0.22 300), oklch(70% 0.2 350));
+  --grad-support: linear-gradient(135deg, oklch(66% 0.14 185), oklch(74% 0.17 145));
+  --grad-talk: linear-gradient(135deg, oklch(72% 0.17 50), oklch(66% 0.2 20));
+  --grad-progress: linear-gradient(135deg, oklch(84% 0.16 90), oklch(74% 0.17 60));
+  --grad-hero: linear-gradient(160deg, oklch(95% 0.05 300) 0%, oklch(96% 0.05 220) 50%, oklch(97% 0.06 95) 100%);
+
+  --text-scale: 1;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: oklch(20% 0.03 285);
+    --bg-2: oklch(24% 0.035 285);
+    --surface: oklch(26% 0.035 285);
+    --ink: oklch(96% 0.01 285);
+    --ink-soft: oklch(80% 0.02 285);
+    --line: oklch(36% 0.04 285);
+    --focus: oklch(78% 0.16 290);
+    --shadow: 0 1px 2px oklch(0% 0 0 / 0.3), 0 8px 24px -8px oklch(0% 0 0 / 0.5);
+    --shadow-lg: 0 20px 48px -16px oklch(0% 0 0 / 0.6);
+    --violet-soft: oklch(32% 0.08 295); --violet-ink: oklch(90% 0.06 295);
+    --coral-soft: oklch(32% 0.07 30); --coral-ink: oklch(90% 0.06 30);
+    --teal-soft: oklch(31% 0.05 185); --teal-ink: oklch(90% 0.05 185);
+    --sun-soft: oklch(33% 0.06 85); --sun-ink: oklch(92% 0.08 90);
+    --rose-soft: oklch(32% 0.07 0); --rose-ink: oklch(90% 0.06 0);
+    --sky-soft: oklch(31% 0.06 240); --sky-ink: oklch(90% 0.05 240);
+    --mint-soft: oklch(31% 0.05 160); --mint-ink: oklch(90% 0.06 160);
+    --peach-soft: oklch(32% 0.06 55); --peach-ink: oklch(91% 0.06 60);
+    --lilac-soft: oklch(31% 0.05 310); --lilac-ink: oklch(90% 0.05 310);
+    --lime-soft: oklch(31% 0.06 130); --lime-ink: oklch(91% 0.08 130);
+    --grad-hero: linear-gradient(160deg, oklch(26% 0.06 300) 0%, oklch(24% 0.05 240) 60%, oklch(26% 0.05 90) 100%);
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: oklch(20% 0.03 285);
+  --bg-2: oklch(24% 0.035 285);
+  --surface: oklch(26% 0.035 285);
+  --ink: oklch(96% 0.01 285);
+  --ink-soft: oklch(80% 0.02 285);
+  --line: oklch(36% 0.04 285);
+  --focus: oklch(78% 0.16 290);
+  --shadow: 0 1px 2px oklch(0% 0 0 / 0.3), 0 8px 24px -8px oklch(0% 0 0 / 0.5);
+  --shadow-lg: 0 20px 48px -16px oklch(0% 0 0 / 0.6);
+  --violet-soft: oklch(32% 0.08 295); --violet-ink: oklch(90% 0.06 295);
+  --coral-soft: oklch(32% 0.07 30); --coral-ink: oklch(90% 0.06 30);
+  --teal-soft: oklch(31% 0.05 185); --teal-ink: oklch(90% 0.05 185);
+  --sun-soft: oklch(33% 0.06 85); --sun-ink: oklch(92% 0.08 90);
+  --rose-soft: oklch(32% 0.07 0); --rose-ink: oklch(90% 0.06 0);
+  --sky-soft: oklch(31% 0.06 240); --sky-ink: oklch(90% 0.05 240);
+  --mint-soft: oklch(31% 0.05 160); --mint-ink: oklch(90% 0.06 160);
+  --peach-soft: oklch(32% 0.06 55); --peach-ink: oklch(91% 0.06 60);
+  --lilac-soft: oklch(31% 0.05 310); --lilac-ink: oklch(90% 0.05 310);
+  --lime-soft: oklch(31% 0.06 130); --lime-ink: oklch(91% 0.08 130);
+  --grad-hero: linear-gradient(160deg, oklch(26% 0.06 300) 0%, oklch(24% 0.05 240) 60%, oklch(26% 0.05 90) 100%);
+  color-scheme: dark;
+}
+
+/* High contrast: black on white, strong borders, no soft tints. */
+:root[data-contrast='high'] {
+  --bg: #fff;
+  --bg-2: #fff;
+  --surface: #fff;
+  --ink: #000;
+  --ink-soft: #000;
+  --line: #000;
+  --focus: #0040ff;
+  --shadow: none;
+  --shadow-lg: none;
+  --violet-soft: #fff; --coral-soft: #fff; --teal-soft: #fff; --sun-soft: #fff; --rose-soft: #fff;
+  --sky-soft: #fff; --mint-soft: #fff; --peach-soft: #fff; --lilac-soft: #fff; --lime-soft: #fff;
+  --violet-ink: #000; --coral-ink: #000; --teal-ink: #000; --sun-ink: #000; --rose-ink: #000;
+  --sky-ink: #000; --mint-ink: #000; --peach-ink: #000; --lilac-ink: #000; --lime-ink: #000;
+  --violet: #4b00b5; --coral: #a3200b; --teal: #00585a; --sun: #6b4e00; --rose: #9b0040;
+  --sky: #003f9e; --mint: #005c3a; --peach: #7a3d00; --lilac: #5f0e7a; --lime: #2f5c00;
+  --grad-wellbeing: #4b00b5; --grad-support: #00585a; --grad-talk: #a3200b; --grad-progress: #6b4e00;
+  --grad-hero: #fff;
+  color-scheme: light;
+}
+:root[data-contrast='high'] .card,
+:root[data-contrast='high'] .chip,
+:root[data-contrast='high'] .btn {
+  border: 2px solid #000 !important;
+}
+
+:root[data-text='s'] { --text-scale: 0.9; }
+:root[data-text='l'] { --text-scale: 1.15; }
+:root[data-text='xl'] { --text-scale: 1.3; }
+
+@theme {
+  --font-display: 'Lexend Variable', 'Lexend', system-ui, sans-serif;
+  --font-body: 'Atkinson Hyperlegible', system-ui, sans-serif;
+
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+
+  --color-violet: var(--violet); --color-violet-soft: var(--violet-soft); --color-violet-ink: var(--violet-ink);
+  --color-coral: var(--coral); --color-coral-soft: var(--coral-soft); --color-coral-ink: var(--coral-ink);
+  --color-teal: var(--teal); --color-teal-soft: var(--teal-soft); --color-teal-ink: var(--teal-ink);
+  --color-sun: var(--sun); --color-sun-soft: var(--sun-soft); --color-sun-ink: var(--sun-ink);
+  --color-rose: var(--rose); --color-rose-soft: var(--rose-soft); --color-rose-ink: var(--rose-ink);
+  --color-sky: var(--sky); --color-sky-soft: var(--sky-soft); --color-sky-ink: var(--sky-ink);
+  --color-mint: var(--mint); --color-mint-soft: var(--mint-soft); --color-mint-ink: var(--mint-ink);
+  --color-peach: var(--peach); --color-peach-soft: var(--peach-soft); --color-peach-ink: var(--peach-ink);
+  --color-lilac: var(--lilac); --color-lilac-soft: var(--lilac-soft); --color-lilac-ink: var(--lilac-ink);
+  --color-lime: var(--lime); --color-lime-soft: var(--lime-soft); --color-lime-ink: var(--lime-ink);
+
+  --radius-card: 1.5rem;
+  --shadow-card: var(--shadow);
+  --shadow-pop: var(--shadow-lg);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-wiggle: wiggle 0.5s ease-in-out;
+  --animate-pop-in: pop-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-8deg); }
+    75% { transform: rotate(8deg); }
+  }
+  @keyframes pop-in {
+    from { opacity: 0; transform: scale(0.85) translateY(8px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+}
+
+@layer base {
+  html {
+    font-size: calc(100% * var(--text-scale));
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.55;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 0.75rem;
+  }
+  button { cursor: pointer; }
+  ::selection { background: var(--violet-soft); }
+}
+
+/* Calm mode and OS reduced motion: stop decorative motion. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root[data-calm='on'] *,
+:root[data-calm='on'] *::before,
+:root[data-calm='on'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+/* The breathing guide is functional, not decorative: keep it moving in calm mode. */
+:root[data-calm='on'] .keep-motion,
+:root[data-calm='on'] .keep-motion * {
+  transition-duration: revert !important;
+  animation-duration: revert !important;
+}
+
+@utility card {
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+}
+
+/* Highlight on the sentence being read aloud. */
+.tts-active {
+  background: var(--sun-soft);
+  box-shadow: 0 0 0 4px var(--sun-soft);
+  border-radius: 0.5rem;
+}
+
+/* Smooth cross-page transitions (Chrome/Edge/Safari 18+), off in calm/reduced motion. */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.25s;
+}
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+}
+:root[data-calm='on']::view-transition-old(root),
+:root[data-calm='on']::view-transition-new(root) {
+  animation: none;
+}

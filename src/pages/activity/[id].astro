@@ -1,0 +1,15 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import ActivityPage from '../../islands/ActivityPage';
+import { activities } from '../../data/activities';
+
+export function getStaticPaths() {
+  return activities.map((a) => ({ params: { id: a.id }, props: { title: a.title } }));
+}
+const { id } = Astro.params;
+const { title } = Astro.props;
+---
+
+<AppLayout title={title}>
+  <ActivityPage client:only="react" id={id} />
+</AppLayout>

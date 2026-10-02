@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import { DifficultyListPage } from '../../../islands/DifficultyPages';
+---
+
+<AppLayout title="What is difficult for me?">
+  <DifficultyListPage client:only="react" />
+</AppLayout>

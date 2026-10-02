@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page not found">
+  <main class="grid min-h-dvh place-items-center px-4 text-center" style="background: var(--grad-hero)">
+    <div>
+      <img src="/favicon.svg" alt="" class="mx-auto size-20 animate-float" />
+      <h1 class="mt-4 text-3xl font-bold">Oops! This page wandered off.</h1>
+      <p class="mt-2 text-lg text-ink-soft">Let’s get you back somewhere friendly.</p>
+      <a href="/" class="btn mt-6 inline-flex min-h-14 items-center rounded-2xl px-6 font-display text-lg font-semibold text-white shadow-card" style="background: var(--grad-wellbeing)">Go home</a>
+    </div>
+  </main>
+</BaseLayout>

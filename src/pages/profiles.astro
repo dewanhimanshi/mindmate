@@ -1,0 +1,8 @@
+---
+import AppLayout from '../layouts/AppLayout.astro';
+import ProfilesPage from '../islands/ProfilesPage';
+---
+
+<AppLayout title="Who's using MindMate?">
+  <ProfilesPage client:only="react" />
+</AppLayout>

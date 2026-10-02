@@ -1,0 +1,15 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import { TalkPersonPage } from '../../islands/TalkPages';
+import { talkPeople } from '../../data/talk';
+
+export function getStaticPaths() {
+  return talkPeople.map((p) => ({ params: { person: p.id }, props: { title: p.name } }));
+}
+const { person } = Astro.params;
+const { title } = Astro.props;
+---
+
+<AppLayout title={title}>
+  <TalkPersonPage client:only="react" id={person} />
+</AppLayout>

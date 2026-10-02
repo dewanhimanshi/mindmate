@@ -1,0 +1,8 @@
+---
+import AppLayout from '../layouts/AppLayout.astro';
+import AuthPage from '../islands/AuthPage';
+---
+
+<AppLayout title="Log in">
+  <AuthPage client:only="react" mode="login" />
+</AppLayout>

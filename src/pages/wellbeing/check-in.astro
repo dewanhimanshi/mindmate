@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import CheckInPage from '../../islands/CheckInPage';
+---
+
+<AppLayout title="How am I feeling?">
+  <CheckInPage client:only="react" />
+</AppLayout>

@@ -1,0 +1,8 @@
+---
+import AppLayout from '../layouts/AppLayout.astro';
+import WelcomePage from '../islands/WelcomePage';
+---
+
+<AppLayout>
+  <WelcomePage client:only="react" />
+</AppLayout>

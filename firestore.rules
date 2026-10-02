@@ -1,0 +1,33 @@
+rules_version = '2';
+
+// Every family's data lives under users/{uid}. Only the signed-in parent
+// who owns that uid can read or write it.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    match /users/{uid} {
+      allow read, write: if isOwner(uid);
+
+      match /children/{childId} {
+        allow read, write: if isOwner(uid);
+
+        match /{coll}/{docId} {
+          allow read, write: if isOwner(uid)
+            && coll in ['checkins', 'activityLogs', 'wins', 'journal'];
+        }
+
+        // Voice notes are stored inline as Bytes; keep each under Firestore's 1 MiB doc limit.
+        match /voiceNotes/{noteId} {
+          allow read, delete: if isOwner(uid);
+          allow create: if isOwner(uid)
+            && request.resource.data.audio is bytes
+            && request.resource.data.audio.size() <= 900000
+            && request.resource.data.durationSec <= 65;
+        }
+      }
+    }
+  }
+}

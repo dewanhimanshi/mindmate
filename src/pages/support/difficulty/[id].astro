@@ -1,0 +1,15 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import { DifficultyPage } from '../../../islands/DifficultyPages';
+import { difficulties } from '../../../data/support';
+
+export function getStaticPaths() {
+  return difficulties.map((d) => ({ params: { id: d.id }, props: { title: d.label } }));
+}
+const { id } = Astro.params;
+const { title } = Astro.props;
+---
+
+<AppLayout title={title}>
+  <DifficultyPage client:only="react" id={id} />
+</AppLayout>

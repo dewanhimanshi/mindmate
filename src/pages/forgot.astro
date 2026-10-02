@@ -1,0 +1,8 @@
+---
+import AppLayout from '../layouts/AppLayout.astro';
+import AuthPage from '../islands/AuthPage';
+---
+
+<AppLayout title="Reset password">
+  <AuthPage client:only="react" mode="forgot" />
+</AppLayout>

@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title,
+  description = 'A friendly well-being and everyday-support app for every student, including children with special needs. Check in on feelings, find strategies, get the words to talk, and celebrate small wins.',
+} = Astro.props;
+const fullTitle = title ? `${title} · MindMate` : 'MindMate';
+const shareTitle = title ? fullTitle : 'MindMate · Feel. Find support. Grow, step by step.';
+// Firebase serves pages without a trailing slash (and redirects /x/ to /x), so match that.
+const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', Astro.site);
+const ogImage = new URL('/og-image.jpg', Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#8b5cf6" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>{fullTitle}</title>
+    <link rel="canonical" href={canonical} />
+
+    <!-- Link previews (WhatsApp, iMessage, Slack, Facebook, LinkedIn, X) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="MindMate" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:title" content={shareTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="MindMate: Feel. Find support. Grow, step by step. A friendly sprout mascot in a pot." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={shareTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script is:inline>
+      // Apply saved accessibility settings before first paint (no flash).
+      try {
+        const s = JSON.parse(localStorage.getItem('mm:settings') || '{}');
+        const d = document.documentElement;
+        if (s.textSize) d.dataset.text = s.textSize;
+        if (s.contrast === 'high') d.dataset.contrast = 'high';
+        if (s.theme && s.theme !== 'system') d.dataset.theme = s.theme;
+        if (s.calmMode) d.dataset.calm = 'on';
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <slot />
+    {
+      import.meta.env.PROD && (
+        <script is:inline>
+          if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+        </script>
+      )
+    }
+  </body>
+</html>

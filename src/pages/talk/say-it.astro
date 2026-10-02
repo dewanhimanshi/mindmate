@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import { SayItPage } from '../../islands/TalkPages';
+---
+
+<AppLayout title="Help me say it">
+  <SayItPage client:only="react" />
+</AppLayout>
